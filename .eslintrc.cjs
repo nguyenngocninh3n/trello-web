@@ -21,6 +21,14 @@ module.exports = {
     'react/prop-types': 0,
     'react/display-name': 0,
 
+    //MUI rules
+    'no-restricted-imports': [
+      'error',
+      {
+        'patterns': ['@mui/*/*/*']
+      }
+    ],
+
     // most of under rules were deprecated ESLint v8.53.0
 
     // 'no-console': 1,
