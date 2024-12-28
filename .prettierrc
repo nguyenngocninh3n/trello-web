@@ -1,7 +1,7 @@
 {
   "overrides": [
     {
-      "files": ["*.js", "*.jsx"],
+      "files": ["*.js", "*.jsx", "*.cjs"],
       "options": {
         "printWidth": 100,
         "tabWidth": 2,
@@ -11,7 +11,7 @@
         "trailingComma": "none",
         "bracketSpacing": true,
         "jsxBracketSameLine": false,
-        "arrowParens": "always",
+        "arrowParens": "avoid",
         "rangeStart": 0,
         "parser": "babel",
         "requirePragma": false,
@@ -20,5 +20,4 @@
       }
     }
   ]
-
 }
