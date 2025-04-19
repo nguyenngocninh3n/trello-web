@@ -1,0 +1,65 @@
+import TrelloLogo from '@assets/images/trello_logo.svg'
+import ModalModeSelect from '@components/ModalModeSelect'
+import AppsIcon from '@mui/icons-material/Apps'
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined'
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined'
+import { Badge, Box, Button, SvgIcon, Tooltip, Typography } from '@mui/material'
+import RecentMenu from './Menus/RecentMenu'
+import StarredMenu from './Menus/StarredMenu'
+import TemplateMenu from './Menus/TemplateMenu'
+import WorkspaceMenu from './Menus/WorkspaceMenu'
+import ProfileSetting from './ProfileSetting'
+import SearchInput from './SearchInput'
+const AppBar = () => {
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        height: theme => theme.trello.appBarHeight,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}
+    >
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }} gap={2}>
+        <AppsIcon />
+        <Box sx={{ display: 'flex' }} gap={1}>
+          <SvgIcon>
+            <TrelloLogo />
+          </SvgIcon>
+          <Typography>Trello</Typography>
+        </Box>
+        <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: 'flex' }}>
+            <WorkspaceMenu />
+          </Box>
+          <Box sx={{ display: 'flex' }}>
+            <RecentMenu />
+          </Box>
+          <Box sx={{ display: 'flex' }}>
+            <StarredMenu />
+          </Box>
+          <Box sx={{ display: 'flex' }}>
+            <TemplateMenu />
+          </Box>
+          <Button variant="outlined">Create</Button>
+        </Box>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center' }} gap={1}>
+        <SearchInput />
+        <Tooltip title="Notification">
+          <Badge color="secondary" variant="dot" overlap="circular">
+            <NotificationsNoneOutlinedIcon fontSize="medium" sx={{ cursor: 'pointer' }} />
+          </Badge>
+        </Tooltip>
+        <Tooltip title="Helper">
+          <HelpOutlineOutlinedIcon fontSize="medium" />
+        </Tooltip>
+        <ModalModeSelect />
+        <ProfileSetting />
+      </Box>
+    </Box>
+  )
+}
+
+export default AppBar
