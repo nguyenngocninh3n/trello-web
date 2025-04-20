@@ -18,16 +18,17 @@ const AppBar = () => {
         height: theme => theme.trello.appBarHeight,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        bgcolor: theme => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0')
       }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }} gap={2}>
-        <AppsIcon />
+        <AppsIcon sx={{ color: 'white' }} />
         <Box sx={{ display: 'flex' }} gap={1}>
-          <SvgIcon>
+          <SvgIcon sx={{ color: 'white' }}>
             <TrelloLogo />
           </SvgIcon>
-          <Typography>Trello</Typography>
+          <Typography color="white">Trello</Typography>
         </Box>
         <Box sx={{ display: 'flex' }}>
           <Box sx={{ display: 'flex' }}>
@@ -42,7 +43,12 @@ const AppBar = () => {
           <Box sx={{ display: 'flex' }}>
             <TemplateMenu />
           </Box>
-          <Button variant="outlined">Create</Button>
+          <Button
+            sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }}
+            variant="outlined"
+          >
+            Create
+          </Button>
         </Box>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }} gap={1}>

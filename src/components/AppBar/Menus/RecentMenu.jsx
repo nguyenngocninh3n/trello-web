@@ -1,7 +1,17 @@
 import { Check } from '@mui/icons-material'
-import { Box, Button, Divider, ListItemIcon, ListItemText, Menu, MenuItem, MenuList } from '@mui/material'
-import { useState } from 'react'
+import {
+  Box,
+  Button,
+  Divider,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  MenuList
+} from '@mui/material'
 
+import { useState } from 'react'
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined'
 function RecentMenu() {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
@@ -12,8 +22,9 @@ function RecentMenu() {
     setAnchorEl(null)
   }
   return (
-    <Box>
+    <Box sx={{ alignItems: 'center', display: 'flex' }}>
       <Button
+        sx={{ color: 'white' }}
         id="basic-button-recent"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -21,7 +32,9 @@ function RecentMenu() {
         onClick={handleClick}
       >
         Recent
+        <ExpandMoreOutlinedIcon />
       </Button>
+
       <Menu
         id="basic-menu-workspace"
         anchorEl={anchorEl}

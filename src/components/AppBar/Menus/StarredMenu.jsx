@@ -10,6 +10,7 @@ import {
   Typography
 } from '@mui/material'
 import { useState } from 'react'
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined'
 
 function StarredMenu() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -23,6 +24,7 @@ function StarredMenu() {
   return (
     <Box>
       <Button
+        sx={{ color: 'white' }}
         id="basic-button-starred"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -30,6 +32,8 @@ function StarredMenu() {
         onClick={handleClick}
       >
         Starred
+        <ExpandMoreOutlinedIcon />
+
       </Button>
       <Menu
         id="basic-menu-starred"

@@ -10,6 +10,7 @@ import {
   Typography
 } from '@mui/material'
 import { useState } from 'react'
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined'
 
 function TemplateMenu() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -23,6 +24,7 @@ function TemplateMenu() {
   return (
     <Box>
       <Button
+        sx={{ color: 'white' }}
         id="basic-button-template"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -30,6 +32,7 @@ function TemplateMenu() {
         onClick={handleClick}
       >
         Templates
+        <ExpandMoreOutlinedIcon />
       </Button>
       <Menu
         id="basic-menu-template"

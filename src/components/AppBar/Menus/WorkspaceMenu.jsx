@@ -10,6 +10,7 @@ import {
   Typography
 } from '@mui/material'
 import { useState } from 'react'
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined'
 
 function WorkspaceMenu() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -29,9 +30,10 @@ function WorkspaceMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Workspaces
+        <ExpandMoreOutlinedIcon />
       </Button>
       <Menu
+        sx={{ color: 'white' }}
         id="basic-menu-workspace"
         anchorEl={anchorEl}
         open={open}
