@@ -4,7 +4,7 @@ import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import BoltIcon from '@mui/icons-material/Bolt'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined'
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box
       sx={{
@@ -13,8 +13,10 @@ function BoardBar() {
         justifyContent: 'space-between',
         padding: 2,
         borderBottom: '1px solid white',
-        height: theme => (theme.trello.boardBarHeight),
-        bgcolor: theme => (theme.palette.mode === 'dark' ? '#31495e' : '#1976d2')
+        height: theme => theme.trello.boardBarHeight,
+        bgcolor: theme => (theme.palette.mode === 'dark' ? '#31495e' : '#1976d2'),
+        overflowX: 'auto',
+        overflowY: 'hidden'
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -22,7 +24,7 @@ function BoardBar() {
           <Chip
             sx={{ color: 'white' }}
             icon={<DashboardIcon color="white" />}
-            label="NguyenNgocNinh - Trello"
+            label={board?.title}
             clickable
           />
         </Box>
@@ -30,7 +32,7 @@ function BoardBar() {
           <Chip
             sx={{ color: 'white' }}
             icon={<Typography color="white" />}
-            label="Public/Private Workspace"
+            label={board?.type}
             clickable
           />
         </Box>
@@ -78,7 +80,7 @@ function BoardBar() {
           max={5}
           sx={{
             gap: '10px',
-            '& .MuiAvatar-root': { cursor: 'pointer' },
+            '& .MuiAvatar-root': { cursor: 'pointer' }
             // '&:first-of-type': { bgcolor: '#a4b0be' },
           }}
         >

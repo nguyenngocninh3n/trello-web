@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 import Column from './Column'
 import { NoteAdd } from '@mui/icons-material'
 
-function ListComlumns() {
+function ListComlumns({columns}) {
   return (
     <Box
       sx={{
@@ -14,13 +14,7 @@ function ListComlumns() {
         overflowY: 'hidden'
       }}
     >
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
-      <Column />
+      {columns?.map(column => (<Column key={column._id} column={column} />))}
       <Box
         sx={{
           minWidth: '200px',

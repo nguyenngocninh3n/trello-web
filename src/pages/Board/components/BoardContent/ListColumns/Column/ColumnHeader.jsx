@@ -18,7 +18,7 @@ import {
   Typography
 } from '@mui/material'
 import { useState } from 'react'
-function ColumnHeader() {
+function ColumnHeader({ title }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = event => {
@@ -38,7 +38,7 @@ function ColumnHeader() {
       }}
     >
       <Typography variant="h6" sx={{ fontWeight: 'bold', cursor: 'pointer' }}>
-        Column Title
+        {title}
       </Typography>
       <Box sx={{ alignItems: 'center', display: 'flex' }}>
         <Tooltip title="More options">

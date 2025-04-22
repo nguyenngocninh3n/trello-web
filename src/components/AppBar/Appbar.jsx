@@ -16,7 +16,9 @@ const AppBar = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        bgcolor: theme => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0')
+        bgcolor: theme => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0'),
+        overflowX: 'auto',
+        overflowY: 'hidden'
       }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }} gap={2}>

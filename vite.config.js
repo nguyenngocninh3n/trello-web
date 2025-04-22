@@ -12,7 +12,6 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@mui/material/Tooltip']
   },
-  // base: './'
   resolve: {
     alias: [
       { find: '~', replacement: '/src' },
