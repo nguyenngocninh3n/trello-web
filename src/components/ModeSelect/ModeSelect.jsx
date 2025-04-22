@@ -1,6 +1,6 @@
 import { DarkMode, LightMode, SettingsBrightness } from '@mui/icons-material'
 import { Box, FormControl, InputLabel, MenuItem, Select, useColorScheme } from '@mui/material'
-function ModalModeSelect() {
+function ModeSelect() {
   const { mode, setMode } = useColorScheme()
 
   const handleChange = event => {
@@ -51,4 +51,4 @@ function ModalModeSelect() {
   )
 }
 
-export default ModalModeSelect
+export default ModeSelect

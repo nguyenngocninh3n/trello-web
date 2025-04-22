@@ -1,5 +1,5 @@
 import { Button, useColorScheme } from '@mui/material'
-function ModalModeToggle() {
+function ModeToggle() {
   const { mode, setMode } = useColorScheme()
   return (
     <Button
@@ -12,4 +12,4 @@ function ModalModeToggle() {
   )
 }
 
-export default ModalModeToggle
+export default ModeToggle
