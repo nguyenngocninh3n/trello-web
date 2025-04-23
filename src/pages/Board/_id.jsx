@@ -8,7 +8,7 @@ const BoardDetail = () => {
     <Container>
       <AppBar />
       <BoardBar board={mockData?.board} />
-      <BoardContent board={mockData.board} />
+      <BoardContent board={mockData?.board} />
     </Container>
   )
 }
