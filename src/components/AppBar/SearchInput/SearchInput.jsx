@@ -1,4 +1,3 @@
-import { AccountCircle } from '@mui/icons-material'
 import { Box, InputAdornment, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'

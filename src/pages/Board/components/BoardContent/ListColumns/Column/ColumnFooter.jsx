@@ -2,6 +2,7 @@ import { AddCard, DragHandle } from '@mui/icons-material'
 import { Box, Button, Tooltip } from '@mui/material'
 
 function ColumnFooter() {
+  
   return (
     <Box
       sx={{
