@@ -7,28 +7,24 @@ import {
   DeleteForever,
   ExpandMoreOutlined
 } from '@mui/icons-material'
-import {
-  Box,
-  Divider,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Tooltip,
-  Typography
-} from '@mui/material'
+import { Box, Divider, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
 import { useState } from 'react'
-function ColumnHeader({ title }) {
+function ColumnHeader({ title, columnId, deleteColumn }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = event => {
+    console.log('click: ', event.currentTarget)
     setAnchorEl(event.currentTarget)
   }
-  const handleClose = () => {
-    setAnchorEl(null)
+  const handleClose = () => setAnchorEl(null)
+
+  const handleDeleteColumn = () => {
+    deleteColumn(columnId)
+    handleClose()
   }
   return (
     <Box
+      data-no-dnd
       sx={{
         height: theme => theme.trello.columnHeaderHeight,
         p: 2,
@@ -53,6 +49,7 @@ function ColumnHeader({ title }) {
         </Tooltip>
 
         <Menu
+          data-no-dnd
           id="basic-menu-column-dropdown"
           anchorEl={anchorEl}
           open={open}
@@ -86,7 +83,7 @@ function ColumnHeader({ title }) {
             <ListItemText>Past</ListItemText>
           </MenuItem>
           <Divider />
-          <MenuItem>
+          <MenuItem onClick={handleDeleteColumn}>
             <ListItemIcon>
               <DeleteForever fontSize="small" />
             </ListItemIcon>

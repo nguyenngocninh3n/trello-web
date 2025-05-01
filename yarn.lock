@@ -437,7 +437,7 @@
   dependencies:
     "@babel/runtime" "^7.23.9"
 
-"@mui/material@^5.0.0", "@mui/material@^5.13.0":
+"@mui/material@^5.0.0", "@mui/material@^5.13.0", "@mui/material@>= 5.0.0":
   version "5.16.13"
   resolved "https://registry.npmjs.org/@mui/material/-/material-5.16.13.tgz"
   integrity sha512-FhLDkDPYDzvrWCHFsdXzRArhS4AdYufU8d69rmLL+bwhodPcbm2C7cS8Gq5VR32PsW6aKZb58gvAgvEVaiiJbA==
@@ -1806,6 +1806,11 @@ lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
+
+material-ui-confirm@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/material-ui-confirm/-/material-ui-confirm-4.0.0.tgz"
+  integrity sha512-Wtt7XWythYtawPTfq8V/eYGvJ7jqwCQGmEnmpevJicaJ3PUoDcLh/b/m7aV6yNdrWwjQjB2r/RvTWQAC6y0tKw==
 
 math-intrinsics@^1.1.0:
   version "1.1.0"

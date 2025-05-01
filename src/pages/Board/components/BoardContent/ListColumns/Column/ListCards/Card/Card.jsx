@@ -27,7 +27,14 @@ function Card({ card, hidden }) {
       style={style}
       {...attributes}
       {...listeners}
-      sx={{ maxWidth: '345px', overflow: 'unset', opacity: card?.hidden ? 0 : 1 }}
+      sx={{
+        maxWidth: '345px',
+        overflow: 'unset',
+        opacity: card?.hidden ? 0 : 1,
+        height: card?.hidden ? '10px' : undefined
+        // display: card?.hidden ? 'none' : 'block'
+        // height: card?.hidden ? '0px' : undefined
+      }}
     >
       {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} title="green iguana" />}
       <CardContent sx={{ p: 1.5, overflow: 'unset', '&:last-child': { p: 1.5 } }}>

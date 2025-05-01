@@ -6,25 +6,28 @@ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/s
 
 import theme from '../theme.js'
 import { Bounce, ToastContainer } from 'react-toastify'
+import { ConfirmProvider } from 'material-ui-confirm'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CssVarsProvider theme={theme}>
-      <CssBaseline />
-      <App />
-      <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition={Bounce}
-      />
+      <ConfirmProvider defaultOptions={{}}>
+        <CssBaseline />
+        <App />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition={Bounce}
+        />
+      </ConfirmProvider>
     </CssVarsProvider>
   </React.StrictMode>
 )

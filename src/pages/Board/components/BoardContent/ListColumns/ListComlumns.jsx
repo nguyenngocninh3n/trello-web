@@ -1,10 +1,14 @@
-import { Box } from '@mui/material'
-import Column from './Column'
 import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortable'
+import { Box } from '@mui/material'
 import AddColumn from './AddColumn'
+import Column from './Column'
+import { isEmpty } from 'lodash'
+import { generate_placeholder_card } from '~/utils/mapOrder'
 
-function ListComlumns({ columns, addNewColumn, addNewCard }) {
+function ListComlumns({ columns, addNewColumn, addNewCard, deleteColumn }) {
   const columnIds = columns?.map(column => column._id)
+
+  const customColumns = [...columns]
   return (
     <SortableContext items={columnIds} strategy={horizontalListSortingStrategy}>
       <Box
@@ -17,8 +21,8 @@ function ListComlumns({ columns, addNewColumn, addNewCard }) {
           overflowY: 'hidden'
         }}
       >
-        {columns?.map(column => (
-          <Column key={column._id} column={column} addNewCard={addNewCard} />
+        {customColumns?.map(column => (
+          <Column key={column._id} column={column} addNewCard={addNewCard} deleteColumn={deleteColumn} />
         ))}
         <AddColumn addNewColumn={addNewColumn} />
       </Box>

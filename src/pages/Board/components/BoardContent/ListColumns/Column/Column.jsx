@@ -1,15 +1,12 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Box, Button } from '@mui/material'
-import mapOrder from '~/utils/mapOrder'
 import AddCardComponent from './AddCardComponent'
 import ColumnHeader from './ColumnHeader'
 import ListCards from './ListCards'
-import Card from './ListCards/Card'
-import { isEmpty } from 'lodash'
 
-function Column({ column, addNewCard }) {
-  let orderCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
+function Column({ column, addNewCard, deleteColumn }) {
+  let orderCards = column.cards
   if (!orderCards?.length) {
     orderCards = [{ _id: 'hidden_card', columnId: column?._id, boardId: column?.boardId, hidden: true }]
   }
@@ -40,10 +37,9 @@ function Column({ column, addNewCard }) {
           maxHeight: theme => `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`
         }}
       >
-        <ColumnHeader title={column?.title} />
-        <ListCards cards={orderCards} />
-        <AddCardComponent addNewCard={addNewCard} columnId={column?._id}/>
-        <Button data-no-dnd onClick={() => console.log('list cards: ', orderCards)}>Log</Button>
+        <ColumnHeader title={column?.title} deleteColumn={deleteColumn} columnId={column._id} />
+        <ListCards cards={orderCards} columnId={column._id} />
+        <AddCardComponent addNewCard={addNewCard} columnId={column?._id} />
       </Box>
     </div>
   )
