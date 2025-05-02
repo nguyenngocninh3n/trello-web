@@ -1,2 +1,6 @@
 // export const SERVER_ADDRESS = 'http://localhost:5000'
-export const SERVER_ADDRESS = 'https://trello-server-srvo.onrender.com'
+const SERVER_ADDRESS_LIST = {
+  dev: 'http://localhost:5001',
+  production: 'https://trello-server-srvo.onrender.com'
+}
+export const SERVER_ADDRESS = SERVER_ADDRESS_LIST[process.env.BUILD_MODE]
