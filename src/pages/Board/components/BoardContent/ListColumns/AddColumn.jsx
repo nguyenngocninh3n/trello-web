@@ -1,8 +1,13 @@
 import { Close, NoteAdd } from '@mui/icons-material'
 import { Box, Button, TextField } from '@mui/material'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addNewColumnAPI } from '~/api/column'
+import { addColumn, selectCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
 
-const AddColumn = ({ addNewColumn }) => {
+const AddColumn = () => {
+  const dispatch = useDispatch()
+  const boardId = useSelector(selectCurrentActiveBoard)?._id
   const [isAddingColumn, setIsAddingColumn] = useState(false)
   const [newColumnTitle, setNewColumnTitle] = useState('')
   const toggleAddingColumn = () => setIsAddingColumn(pre => !pre)
@@ -13,10 +18,12 @@ const AddColumn = ({ addNewColumn }) => {
     toggleAddingColumn()
   }
 
-  const handleAddColumn = () => {
-    addNewColumn(newColumnTitle)
+  const handleAddColumn = async () => {
+    const response = await addNewColumnAPI({ boardId, title: newColumnTitle })
+    dispatch(addColumn(response))
     handleClearTitle()
   }
+
   return (
     <Box
       sx={{

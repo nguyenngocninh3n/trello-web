@@ -7,9 +7,11 @@ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/s
 import theme from '../theme.js'
 import { Bounce, ToastContainer } from 'react-toastify'
 import { ConfirmProvider } from 'material-ui-confirm'
+import { Provider } from 'react-redux'
+import { store } from './redux/store.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <Provider store={store}>
     <CssVarsProvider theme={theme}>
       <ConfirmProvider defaultOptions={{}}>
         <CssBaseline />
@@ -29,5 +31,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         />
       </ConfirmProvider>
     </CssVarsProvider>
-  </React.StrictMode>
+  </Provider>
 )

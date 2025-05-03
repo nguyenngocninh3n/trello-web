@@ -8,20 +8,37 @@ import {
   ExpandMoreOutlined
 } from '@mui/icons-material'
 import { Box, Divider, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
+import { useConfirm } from 'material-ui-confirm'
 import { useState } from 'react'
-function ColumnHeader({ title, columnId, deleteColumn }) {
+import { useDispatch } from 'react-redux'
+import { deleteColumnAPI } from '~/api/column'
+import { deleteColumn } from '~/redux/activeBoard/activeBoardSlice'
+function ColumnHeader({ title, columnId }) {
+  const deleteConfirm = useConfirm()
+  const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
-  const handleClick = event => {
-    console.log('click: ', event.currentTarget)
-    setAnchorEl(event.currentTarget)
-  }
+
+  const handleClick = event => setAnchorEl(event.currentTarget)
   const handleClose = () => setAnchorEl(null)
 
-  const handleDeleteColumn = () => {
-    deleteColumn(columnId)
+  const handleDeleteColumn = async () => {
+    const result = await deleteConfirm({
+      title: 'Delete this column?',
+      description: 'This action will be delete selected Column belong with cards into!',
+      cancellationText: 'Huy',
+      confirmationText: 'Xac nhan'
+    }).catch(error => {
+      console.log('error when deleting column: ', error)
+    })
+
+    if (result.confirmed) {
+      await deleteColumnAPI(columnId)
+      dispatch(deleteColumn(columnId))
+    }
     handleClose()
   }
+
   return (
     <Box
       data-no-dnd

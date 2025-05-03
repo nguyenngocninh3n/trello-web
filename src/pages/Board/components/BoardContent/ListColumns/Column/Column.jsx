@@ -5,12 +5,7 @@ import AddCardComponent from './AddCardComponent'
 import ColumnHeader from './ColumnHeader'
 import ListCards from './ListCards'
 
-function Column({ column, addNewCard, deleteColumn }) {
-  let orderCards = column.cards
-  if (!orderCards?.length) {
-    orderCards = [{ _id: 'hidden_card', columnId: column?._id, boardId: column?.boardId, hidden: true }]
-  }
-
+function Column({ column }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
     data: column
@@ -37,9 +32,9 @@ function Column({ column, addNewCard, deleteColumn }) {
           maxHeight: theme => `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`
         }}
       >
-        <ColumnHeader title={column?.title} deleteColumn={deleteColumn} columnId={column._id} />
-        <ListCards cards={orderCards} columnId={column._id} />
-        <AddCardComponent addNewCard={addNewCard} columnId={column?._id} />
+        <ColumnHeader title={column?.title} columnId={column._id} />
+        <ListCards cards={column.cards} columnId={column._id} />
+        <AddCardComponent boardId={column.boardId} columnId={column?._id} />
       </Box>
     </div>
   )

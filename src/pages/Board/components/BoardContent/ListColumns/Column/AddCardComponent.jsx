@@ -1,14 +1,16 @@
 import { AddCard as AddCardIcon, DragHandle } from '@mui/icons-material'
 import { Box, Button, TextField, Tooltip } from '@mui/material'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-const AddCardComponent = ({ columnId, addNewCard }) => {
+import { addNewCardAPI } from '~/api/card'
+import { addCard } from '~/redux/activeBoard/activeBoardSlice'
+const AddCardComponent = ({ boardId, columnId }) => {
+  const dispatch = useDispatch()
   const [isAddingCard, setIsAddingCard] = useState(false)
   const [newCardTitle, setNewCardTitle] = useState('')
-  const toggleAddingCard = () => {
-    console.log('toggle: ', isAddingCard)
-    setIsAddingCard(pre => !pre)
-  }
+
+  const toggleAddingCard = () => setIsAddingCard(pre => !pre)
   const handleChangeTitle = event => setNewCardTitle(event.target.value)
 
   const handleClearTitle = () => {
@@ -16,13 +18,16 @@ const AddCardComponent = ({ columnId, addNewCard }) => {
     toggleAddingCard()
   }
 
-  const handleAddCard = () => {
+  const handleAddCard = async () => {
     if (!newCardTitle) {
       toast('Title not be empty!')
+    } else {
+      const response = await addNewCardAPI({ boardId, columnId, title: newCardTitle })
+      dispatch(addCard(response))
+      handleClearTitle()
     }
-    addNewCard(columnId, newCardTitle)
-    handleClearTitle()
   }
+
   return (
     <Box sx={{ height: theme => theme.trello.columnFooterHeight, p: 2 }}>
       {isAddingCard ? (

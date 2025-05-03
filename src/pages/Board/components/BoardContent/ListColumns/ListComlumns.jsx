@@ -2,10 +2,8 @@ import { horizontalListSortingStrategy, SortableContext } from '@dnd-kit/sortabl
 import { Box } from '@mui/material'
 import AddColumn from './AddColumn'
 import Column from './Column'
-import { isEmpty } from 'lodash'
-import { generate_placeholder_card } from '~/utils/mapOrder'
 
-function ListComlumns({ columns, addNewColumn, addNewCard, deleteColumn }) {
+function ListComlumns({ columns }) {
   const columnIds = columns?.map(column => column._id)
 
   const customColumns = [...columns]
@@ -22,9 +20,9 @@ function ListComlumns({ columns, addNewColumn, addNewCard, deleteColumn }) {
         }}
       >
         {customColumns?.map(column => (
-          <Column key={column._id} column={column} addNewCard={addNewCard} deleteColumn={deleteColumn} />
+          <Column key={column._id} column={column} />
         ))}
-        <AddColumn addNewColumn={addNewColumn} />
+        <AddColumn />
       </Box>
     </SortableContext>
   )

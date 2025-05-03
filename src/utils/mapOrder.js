@@ -11,7 +11,7 @@ export default function mapOrder(originalArray, orderArray, key) {
 
 export const generate_placeholder_card = column => {
   return {
-    _id: 'placeholder_card',
+    _id: `${column?._id}placeholder_card`,
     boardId: column.boardId,
     columnId: column._id,
     title: 'placeholder card',
