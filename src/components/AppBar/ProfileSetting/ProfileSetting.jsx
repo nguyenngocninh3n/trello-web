@@ -4,23 +4,37 @@ import Logout from '@mui/icons-material/Logout'
 import PersonAdd from '@mui/icons-material/PersonAdd'
 import Settings from '@mui/icons-material/Settings'
 import Avatar from '@mui/material/Avatar'
-import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Tooltip from '@mui/material/Tooltip'
-import Typography from '@mui/material/Typography'
+import { useDispatch } from 'react-redux'
+import { logoutUserAPI } from '~/redux/user/userSlice'
+import { useConfirm } from 'material-ui-confirm'
 function ProfileSetting() {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget)
+  const dispatch = useDispatch()
+  const confirm = useConfirm()
+  const handleClick = event => setAnchorEl(event.currentTarget)
+  const handleClose = () => setAnchorEl(null)
+  const handleLogout = () => {
+    confirm({
+      title: 'Logout!',
+      description: 'You will exit your account!',
+      cancellationText: 'Cancle',
+      confirmationText: 'Confirm'
+    })
+      .then(res => {
+        if (res.confirmed) {
+          dispatch(logoutUserAPI)
+        }
+      })
+      .catch(() => {})
   }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
+
   return (
     <React.Fragment>
       <Tooltip title="Account settings">
@@ -91,9 +105,10 @@ function ProfileSetting() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+
+        <MenuItem onClick={handleLogout} sx={{ '&:hover': { color: 'red' }, '&:hover .logout_icon': { color: 'red' } }}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <Logout className="logout_icon" fontSize="small" />
           </ListItemIcon>
           Logout
         </MenuItem>
