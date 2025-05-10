@@ -1,9 +1,11 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { activeBoardReducer } from './activeBoard/activeBoardSlice'
 import { userReducer } from './user/userSlice'
 
-import { FLUSH, PAUSE, PERSIST, persistReducer, PURGE, REGISTER, REHYDRATE } from 'redux-persist'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { activeCardReducer } from './activeCard/activeCardSlice'
+import { notificationReducer } from './notification/notificationSlice'
 
 const persistConfig = {
   key: 'root',
@@ -13,17 +15,23 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   activeBoard: activeBoardReducer,
-  user: userReducer
+  activeCard: activeCardReducer,
+  user: userReducer,
+  notification: notificationReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
   reducer: persistedReducer,
-  iddleware: getDefaultMiddleware =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+        // Ignore redux-persist actions
+        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+        // Optionally ignore certain paths in action or state
+        ignoredActionPaths: ['register', 'rehydrate'],
+        ignoredPaths: ['_persist']
       }
     })
 })

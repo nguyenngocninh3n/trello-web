@@ -17,10 +17,10 @@ import { generate_placeholder_card } from '~/utils/mapOrder'
 import ListComlumns from './ListColumns'
 import Column from './ListColumns/Column'
 import Card from './ListColumns/Column/ListCards/Card'
-import { updateBoardAPI } from '~/api/board'
 import { updateCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
 import { useDispatch } from 'react-redux'
 import { moveCardsInMultiColumnsAPI, updateColumnAPI } from '~/api/column'
+import { updateBoardDetailAPI } from '~/api'
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: 'ACTIVE_DRAG_ITEM_COLUMN',
@@ -36,13 +36,24 @@ const BoardContent = ({ board }) => {
   const [activeDragItemType, setActiveDragItemType] = useState()
   const [activeDragItemData, setActiveDragItemData] = useState()
 
-  const mouseSensor = useSensor(MouseSensor)
-  const touchSensor = useSensor(TouchSensor)
+  const mouseSensor = useSensor(MouseSensor, {
+    // Press delay of 250ms, with tolerance of 5px of movement
+    activationConstraint: {
+      delay: 250,
+      tolerance: 5
+    }
+  })
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 250,
+      tolerance: 5
+    }
+  })
   const sensors = useSensors(mouseSensor, touchSensor)
   const lastOverId = useRef(null)
 
   useEffect(() => {
-    setDndOrderedColumns(preState => {
+    setDndOrderedColumns(() => {
       console.log('re-render: reSetState for DndOrderColumns')
       const customColumns = board?.columns?.map(column => {
         if (isEmpty(column?.cards)) {
@@ -114,7 +125,7 @@ const BoardContent = ({ board }) => {
 
     const customBoard = { ...board, columnOrderIds, columns }
     dispatch(updateCurrentActiveBoard(customBoard))
-    updateBoardAPI(board._id, { columnOrderIds })
+    updateBoardDetailAPI(board._id, { columnOrderIds })
     setDndOrderedColumns(columns)
   }
 

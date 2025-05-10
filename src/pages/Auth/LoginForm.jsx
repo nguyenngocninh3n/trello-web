@@ -34,12 +34,11 @@ function LoginForm() {
   const handleSubmitLogin = data => {
     toast
       .promise(dispatch(loginUserAPI(data)), {
-        pending: 'Logging in...',
-        success: 'Login successfully!',
-        error: 'Login failed!'
+        pending: 'Logging in...'
       })
       .then(res => {
-        if (!res.errors) {
+        if (!res.error) {
+          toast.success('Login successfully')
           navigate('/')
         }
       })

@@ -45,6 +45,12 @@ export const activeBoardSlice = createSlice({
       customColumn.cards = customColumn.cards.concat([newCardData])
       customColumn.cardOrderIds = customColumn.cardOrderIds.concat([newCardData._id])
       state.currentActiveBoard = board
+    },
+    updateCardInline: (state, action) => {
+      const updatedCard = action.payload
+      const columnContainer = state.currentActiveBoard.columns?.find(column => column._id === updatedCard.columnId)
+      const currentCard =columnContainer?.cards?.find(card => card._id === updatedCard._id)
+      Object.keys(currentCard).forEach(key => currentCard[key] = updatedCard[key])
     }
   },
   extraReducers: builder => {
@@ -64,6 +70,6 @@ export const activeBoardSlice = createSlice({
   }
 })
 
-export const { updateCurrentActiveBoard, deleteColumn, addColumn, addCard } = activeBoardSlice.actions
+export const { updateCurrentActiveBoard, deleteColumn, addColumn, addCard, updateCardInline } = activeBoardSlice.actions
 export const selectCurrentActiveBoard = state => state.activeBoard.currentActiveBoard
 export const activeBoardReducer = activeBoardSlice.reducer

@@ -3,6 +3,8 @@ import { CSS } from '@dnd-kit/utilities'
 import { Attachment, Group, ModeComment } from '@mui/icons-material'
 import { Button, CardActions, CardContent, CardMedia, Typography, Card as MuiCard } from '@mui/material'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { updateActiveCard } from '~/redux/activeCard/activeCardSlice'
 
 function Card({ card, hidden }) {
   const membersLength = card?.memberIds?.length
@@ -20,13 +22,15 @@ function Card({ card, hidden }) {
     transition,
     opacity: isDragging ? 0.5 : undefined
   }
-
+  const dispatch = useDispatch()
+  const handleEditCard = () => dispatch(updateActiveCard(card))
   return (
     <MuiCard
       ref={setNodeRef}
       style={style}
       {...attributes}
       {...listeners}
+      onClick={handleEditCard}
       sx={{
         maxWidth: '345px',
         overflow: 'unset',

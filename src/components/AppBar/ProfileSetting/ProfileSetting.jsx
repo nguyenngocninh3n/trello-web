@@ -10,16 +10,21 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Tooltip from '@mui/material/Tooltip'
-import { useDispatch } from 'react-redux'
-import { logoutUserAPI } from '~/redux/user/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUserAPI, selectCurrentUser } from '~/redux/user/userSlice'
 import { useConfirm } from 'material-ui-confirm'
+import { useNavigate } from 'react-router-dom'
 function ProfileSetting() {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
+  const user = useSelector(selectCurrentUser)
   const dispatch = useDispatch()
   const confirm = useConfirm()
+  const navigate = useNavigate()
+
   const handleClick = event => setAnchorEl(event.currentTarget)
   const handleClose = () => setAnchorEl(null)
+  const handleToSettings = () => navigate('/settings/account')
   const handleLogout = () => {
     confirm({
       title: 'Logout!',
@@ -28,8 +33,10 @@ function ProfileSetting() {
       confirmationText: 'Confirm'
     })
       .then(res => {
+        console.log('response: ', res)
+        console.log('response confirmed: ', res.confirmed)
         if (res.confirmed) {
-          dispatch(logoutUserAPI)
+          dispatch(logoutUserAPI())
         }
       })
       .catch(() => {})
@@ -46,7 +53,7 @@ function ProfileSetting() {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
         >
-          <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+          <Avatar sx={{ width: 32, height: 32 }} src={user.avatar} />
         </IconButton>
       </Tooltip>
       <Menu
@@ -99,7 +106,7 @@ function ProfileSetting() {
           </ListItemIcon>
           Add another account
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleToSettings}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>

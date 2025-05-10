@@ -3,7 +3,7 @@
     {
       "files": ["*.js", "*.jsx", "*.cjs"],
       "options": {
-        "printWidth": 120,
+        "printWidth": 130,
         "tabWidth": 2,
         "useTabs": false,
         "semi": false,

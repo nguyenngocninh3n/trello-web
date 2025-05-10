@@ -4,6 +4,8 @@ import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import BoltIcon from '@mui/icons-material/Bolt'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined'
+import BoardUserGroup from './BoardUserGroup'
+import InviteBoardUser from './InviteBoardUser'
 function BoardBar({ board }) {
   return (
     <Box
@@ -21,75 +23,23 @@ function BoardBar({ board }) {
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Chip
-            sx={{ color: 'white' }}
-            icon={<DashboardIcon color="white" />}
-            label={board?.title}
-            clickable
-          />
+          <Chip sx={{ color: 'white' }} icon={<DashboardIcon color="white" />} label={board?.title} clickable />
         </Box>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Chip
-            sx={{ color: 'white' }}
-            icon={<Typography color="white" />}
-            label={board?.type}
-            clickable
-          />
+          <Chip sx={{ color: 'white' }} icon={<Typography color="white" />} label={board?.type} clickable />
         </Box>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Chip
-            sx={{ color: 'white' }}
-            icon={<AddToDriveIcon color="white" />}
-            label=" Add To Google Drive"
-            clickable
-          />
+          <Chip sx={{ color: 'white' }} icon={<AddToDriveIcon color="white" />} label=" Add To Google Drive" clickable />
         </Box>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Chip
-            sx={{ color: 'white' }}
-            icon={<BoltIcon color="white" />}
-            label="Automation"
-            clickable
-          />
+          <Chip sx={{ color: 'white' }} icon={<BoltIcon color="white" />} label="Automation" clickable />
         </Box>
         <Box sx={{ display: 'flex', gap: 0.5 }}>
-          <Chip
-            sx={{ color: 'white' }}
-            icon={<FilterListIcon color="white" />}
-            label="Filters"
-            clickable
-          />
+          <Chip sx={{ color: 'white' }} icon={<FilterListIcon color="white" />} label="Filters" clickable />
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-        <Button
-          variant="outlined"
-          sx={{
-            color: 'white',
-            gap: 0.5,
-            borderWidth: 1,
-            '&:hover': { borderColor: 'white', borderWidth: '2px' },
-            '&.Mui-focused': { borderColor: 'white', borderWidth: '2px' }
-          }}
-        >
-          <GroupAddOutlinedIcon fontSize="medium" />
-          Invite
-        </Button>
-        <AvatarGroup
-          total={10}
-          max={5}
-          sx={{
-            gap: '10px',
-            '& .MuiAvatar-root': { cursor: 'pointer' }
-            // '&:first-of-type': { bgcolor: '#a4b0be' },
-          }}
-        >
-          <Avatar alt="nguyenngocninh" />
-          <Avatar alt="nguyenngocninh" />
-          <Avatar alt="nguyenngocninh" />
-          <Avatar alt="nguyenngocninh" />
-        </AvatarGroup>
-      </Box>
+      <InviteBoardUser boardId={board?._id} />
+      <BoardUserGroup boardUsers={board?.owners?.concat(board?.members)} />
     </Box>
   )
 }

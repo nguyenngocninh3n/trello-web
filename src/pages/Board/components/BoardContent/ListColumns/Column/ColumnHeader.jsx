@@ -1,23 +1,18 @@
-import {
-  AddCard,
-  Cloud,
-  ContentCopy,
-  ContentCut,
-  ContentPaste,
-  DeleteForever,
-  ExpandMoreOutlined
-} from '@mui/icons-material'
-import { Box, Divider, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
+import { AddCard, Cloud, ContentCopy, ContentCut, ContentPaste, DeleteForever, ExpandMoreOutlined } from '@mui/icons-material'
+import { Box, Divider, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip } from '@mui/material'
+import { cloneDeep } from 'lodash'
 import { useConfirm } from 'material-ui-confirm'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { deleteColumnAPI } from '~/api/column'
-import { deleteColumn } from '~/redux/activeBoard/activeBoardSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteColumnAPI, updateColumnAPI } from '~/api/column'
+import ToggleFocusInput from '~/components/ToggleFocusInput'
+import { deleteColumn, selectCurrentActiveBoard, updateCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
 function ColumnHeader({ title, columnId }) {
   const deleteConfirm = useConfirm()
   const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
+  const board = useSelector(selectCurrentActiveBoard)
 
   const handleClick = event => setAnchorEl(event.currentTarget)
   const handleClose = () => setAnchorEl(null)
@@ -39,6 +34,15 @@ function ColumnHeader({ title, columnId }) {
     handleClose()
   }
 
+  const handleUpdateColumnTitle = value => {
+    updateColumnAPI(columnId, board._id, { title: value }).then(() => {
+      const customBoards = cloneDeep(board)
+      const editedColumn = customBoards.find(col => col._id === columnId)
+      editedColumn.title = value
+      dispatch(updateCurrentActiveBoard(customBoards))
+    })
+  }
+
   return (
     <Box
       data-no-dnd
@@ -50,9 +54,7 @@ function ColumnHeader({ title, columnId }) {
         justifyContent: 'space-between'
       }}
     >
-      <Typography variant="h6" sx={{ fontWeight: 'bold', cursor: 'pointer' }}>
-        {title}
-      </Typography>
+      <ToggleFocusInput value={title} onChangedValue={handleUpdateColumnTitle} />
       <Box sx={{ alignItems: 'center', display: 'flex' }}>
         <Tooltip title="More options">
           <ExpandMoreOutlined

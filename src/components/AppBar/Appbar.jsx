@@ -7,7 +7,10 @@ import { RecentMenu, StarredMenu, TemplateMenu, WorkspaceMenu } from './Menus'
 import SearchInput from './SearchInput'
 import ProfileSetting from './ProfileSetting'
 import ModeSelect from '@components/ModeSelect'
+import { Navigate, useNavigate } from 'react-router-dom'
+import Notifications from './Notifications'
 const AppBar = () => {
+  const navigate = useNavigate()
   return (
     <Box
       sx={{
@@ -22,8 +25,8 @@ const AppBar = () => {
       }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }} gap={2}>
-        <AppsIcon sx={{ color: 'white' }} />
-        <Box sx={{ display: 'flex' }} gap={1}>
+        <AppsIcon onClick={() => navigate('/')} sx={{ color: 'white', cursor: 'pointer' }} />
+        <Box onClick={() => navigate('/')} sx={{ display: 'flex', cursor: 'pointer' }} gap={1}>
           <SvgIcon sx={{ color: 'white' }}>
             <TrelloLogo />
           </SvgIcon>
@@ -42,21 +45,19 @@ const AppBar = () => {
           <Box sx={{ display: 'flex' }}>
             <TemplateMenu />
           </Box>
-          <Button
-            sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }}
-            variant="outlined"
-          >
+          <Button sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }} variant="outlined">
             Create
           </Button>
         </Box>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }} gap={1}>
         <SearchInput />
-        <Tooltip title="Notification">
+        {/* <Tooltip title="Notification">
           <Badge color="secondary" variant="dot" overlap="circular">
             <NotificationsNoneOutlinedIcon fontSize="medium" sx={{ cursor: 'pointer' }} />
           </Badge>
-        </Tooltip>
+        </Tooltip> */}
+        <Notifications  />
         <Tooltip title="Helper">
           <HelpOutlineOutlinedIcon fontSize="medium" />
         </Tooltip>

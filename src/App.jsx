@@ -6,6 +6,8 @@ import NotFound from './pages/NotFound'
 import AccountVerification from './pages/Auth/AccountVerification'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from './redux/user/userSlice'
+import Settings from './pages/Settings/Settings'
+import Boards from './pages/Board'
 
 const ProtectedRoute = ({ user }) => {
   if (!user) {
@@ -24,13 +26,16 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/boards/addf" replace={true} />} />
       <Route path="/login" element={<Auth />} />
       <Route path="/register" element={<Auth />} />
       <Route path="/verify" element={<AccountVerification />} />
 
       <Route element={<ProtectedRoute user={user} />}>
+        <Route path="/" element={<Boards />} />
+        <Route path="/boards" element={<Boards />} />
         <Route path="/boards/:boardId" element={<BoardDetail />} />
+        <Route path="/settings/account" element={<Settings />} />
+        <Route path="/settings/security" element={<Settings />} />
       </Route>
       <Route path="/404" element={<NotFound />} />
       <Route path="*" element={<NotFound />} />
