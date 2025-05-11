@@ -4,7 +4,6 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import AppBar from '~/components/AppBar/AppBar'
 
 import { isEmpty } from 'lodash'
 import { getBoardsAPI } from '~/api'
@@ -13,6 +12,7 @@ import BoardCard from './components/BoardCard'
 import Pagination from './components/Pagination'
 import { Grid } from '@mui/material'
 import BoardSideBar from './components/BoardSideBar'
+import AppBar from '~/components/AppBar'
 
 function Boards() {
   const [boards, setBoards] = useState(null)
