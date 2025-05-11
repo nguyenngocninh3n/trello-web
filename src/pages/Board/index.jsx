@@ -24,8 +24,9 @@ function Boards() {
 
   useEffect(() => callGetBoardsAPI(), [page, location])
 
-  const callGetBoardsAPI =  () => {
-     getBoardsAPI(page).then(data => {
+  const callGetBoardsAPI = () => {
+    const queyString = `?page=${page}`
+    getBoardsAPI(queyString).then(data => {
       if (isEmpty(data)) return
       setBoards(data.boards)
       setTotalBoards(data.totalBoards)

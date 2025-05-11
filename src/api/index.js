@@ -6,9 +6,8 @@ export const refreshTokenAPI = async () => {
   return response.data
 }
 
-export const getBoardsAPI = async (page = 1, itemsPerPage = 12) => {
-  const queyString = `?page=${page}`
-  const response = await axiosInstance.get(`${SERVER_ADDRESS}/v1/boards${queyString}`)
+export const getBoardsAPI = async (queryString) => {
+  const response = await axiosInstance.get(`${SERVER_ADDRESS}/v1/boards${queryString}`)
   return response.data
 }
 
