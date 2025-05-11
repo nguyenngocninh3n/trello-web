@@ -9,6 +9,7 @@ import ProfileSetting from './ProfileSetting'
 import ModeSelect from '@components/ModeSelect'
 import { Navigate, useNavigate } from 'react-router-dom'
 import Notifications from './Notifications'
+import AutoCompleteSearchBoard from './SearchBoards/AutoCompleteSearchBoard'
 const AppBar = () => {
   const navigate = useNavigate()
   return (
@@ -51,13 +52,9 @@ const AppBar = () => {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }} gap={1}>
-        <SearchInput />
-        {/* <Tooltip title="Notification">
-          <Badge color="secondary" variant="dot" overlap="circular">
-            <NotificationsNoneOutlinedIcon fontSize="medium" sx={{ cursor: 'pointer' }} />
-          </Badge>
-        </Tooltip> */}
-        <Notifications  />
+        {/* <SearchInput /> */}
+        <AutoCompleteSearchBoard  />
+        <Notifications />
         <Tooltip title="Helper">
           <HelpOutlineOutlinedIcon fontSize="medium" />
         </Tooltip>

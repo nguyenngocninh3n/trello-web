@@ -49,6 +49,11 @@ function ActiveCard() {
     await callUpdateCardAPI(commentData)
   }
 
+  const onUpdateCardMember = async updateData => {
+    console.log('🚀 ~ onUpdateCardMember ~ onUpdateCardMember:', { updateData })
+    callUpdateCardAPI(updateData)
+  }
+
   return (
     <Modal disableScrollLock open={true} onClose={handleCloseModal} sx={{ overflowY: 'auto' }}>
       <Box
@@ -93,7 +98,12 @@ function ActiveCard() {
         </Box>
 
         <Grid container spacing={2} sx={{ mb: 3 }}>
-          <LeftSide card={activeCard} onUpdateCardDescription={onUpdateCardDescription} onCommentToCard={onCommentToCard} />
+          <LeftSide
+            card={activeCard}
+            onUpdateCardMember={onUpdateCardMember}
+            onUpdateCardDescription={onUpdateCardDescription}
+            onCommentToCard={onCommentToCard}
+          />
           <RightSide card={activeCard} onUploadCardCover={onUploadCardCover} />
         </Grid>
       </Box>

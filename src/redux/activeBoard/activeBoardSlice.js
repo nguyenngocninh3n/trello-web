@@ -49,8 +49,8 @@ export const activeBoardSlice = createSlice({
     updateCardInline: (state, action) => {
       const updatedCard = action.payload
       const columnContainer = state.currentActiveBoard.columns?.find(column => column._id === updatedCard.columnId)
-      const currentCard =columnContainer?.cards?.find(card => card._id === updatedCard._id)
-      Object.keys(currentCard).forEach(key => currentCard[key] = updatedCard[key])
+      const currentCard = columnContainer?.cards?.find(card => card._id === updatedCard._id)
+      Object.keys(currentCard).forEach(key => (currentCard[key] = updatedCard[key]))
     }
   },
   extraReducers: builder => {
@@ -65,6 +65,7 @@ export const activeBoardSlice = createSlice({
           column.cards = mapOrder(column.cards, column.cardOrderIds, '_id')
         }
       })
+      board.allMembers = board.owners.concat(board.members)
       state.currentActiveBoard = board
     })
   }

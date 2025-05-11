@@ -5,11 +5,14 @@ import Popover from '@mui/material/Popover'
 import TextField from '@mui/material/TextField'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { inviteUserToBoardAPI } from '~/api'
 import FieldErrorAlert from '~/components/Form/FieldErrorAlert'
+import { socketInstance } from '~/main'
+import { addNewNotification } from '~/redux/notification/notificationSlice'
 import { EMAIL_RULE, EMAIL_RULE_MESSAGE, FIELD_REQUIRED_MESSAGE } from '~/utils/validators'
 
 function InviteBoardUser({ boardId }) {
@@ -27,12 +30,15 @@ function InviteBoardUser({ boardId }) {
     setValue,
     formState: { errors }
   } = useForm()
+  const dispatch = useDispatch()
+
   const submitInviteUserToBoard = data => {
     const { invitedEmail } = data
 
     inviteUserToBoardAPI(boardId, invitedEmail)
-      .then(() => {
+      .then(response => {
         toast.success('Invite successfully')
+        socketInstance.emit('FE_INVITATION_BOARD_INVITE', response)
       })
       .finally(() => {
         setValue('invitedEmail', null)

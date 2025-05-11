@@ -13,13 +13,18 @@ import { BrowserRouter } from 'react-router-dom'
 import persistStore from 'redux-persist/es/persistStore'
 import { PersistGate } from 'redux-persist/integration/react'
 import { injectStore } from './utils/axiosInstance.js'
+import { io } from 'socket.io-client'
+import { SERVER_ADDRESS } from './utils/constants.js'
+
+
+export const socketInstance = io(SERVER_ADDRESS)
 
 const persistor = persistStore(store)
 injectStore(store)
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
         <CssVarsProvider theme={theme}>
           <ConfirmProvider defaultOptions={{}}>
             <CssBaseline />
@@ -39,7 +44,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             />
           </ConfirmProvider>
         </CssVarsProvider>
-      </PersistGate>
-    </Provider>
-  </BrowserRouter>
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
 )

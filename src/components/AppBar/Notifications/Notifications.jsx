@@ -15,10 +15,16 @@ import DoneIcon from '@mui/icons-material/Done'
 import NotInterestedIcon from '@mui/icons-material/NotInterested'
 import { useDispatch, useSelector } from 'react-redux'
 import ActionButton from './ActionButton'
-import { fetchNotificationsAPI, selectCurrentNotifications, updateNotificationStatus } from '~/redux/notification/notificationSlice'
+import {
+  addNewNotification,
+  fetchNotificationsAPI,
+  selectCurrentNotifications,
+  updateNotificationStatus
+} from '~/redux/notification/notificationSlice'
 import { isEmpty } from 'lodash'
 import { selectCurrentUser } from '~/redux/user/userSlice'
 import { updateInvitationStatusAPI } from '~/api'
+import { socketInstance } from '~/main'
 
 const BOARD_INVITATION_STATUS = {
   PENDING: 'pending',
@@ -43,13 +49,27 @@ function Notifications() {
 
   const updateBoardInvitation = (invitationId, status) => {
     updateInvitationStatusAPI(invitationId, status).then(response => {
-      console.log('response: ', response)
       dispatch(updateNotificationStatus(response))
+      socketInstance.emit('FE_INVITATION_BOARD_UPDATE', response)
     })
   }
 
   useEffect(() => {
     dispatch(fetchNotificationsAPI())
+    socketInstance.on('BE_INVITATION_BOARD_UPDATE', data => {
+      dispatch(updateNotificationStatus(data))
+    })
+
+
+    socketInstance.on('BE_INVITATION_BOARD_INVITE', data => {
+      console.log('INVITE', data)
+      dispatch(addNewNotification(data))
+    })
+
+    return () => {
+      socketInstance.off('BE_INVITATION_BOARD_INVITE')
+      socketInstance.off('BE_INVITATION_BOARD_UPDATE')
+    }
   }, [])
 
   return (

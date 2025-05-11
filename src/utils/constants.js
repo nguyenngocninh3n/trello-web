@@ -4,3 +4,8 @@ const SERVER_ADDRESS_LIST = {
   production: 'https://trello-server-srvo.onrender.com'
 }
 export const SERVER_ADDRESS = SERVER_ADDRESS_LIST[process.env.BUILD_MODE]
+
+export const CARD_ACTIONS = {
+  ADD_MEMBER: 'ADD_MEMBER',
+  DELETE_MEMBER: 'DELETE_MEMBER'
+}

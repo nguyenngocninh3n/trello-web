@@ -8,7 +8,7 @@ const initialValue = {
 
 export const fetchNotificationsAPI = createAsyncThunk('/notification/fetchNotificationsAPI', async () => {
   const response = await axiosInstance.get(`${SERVER_ADDRESS}/v1/invitations/board`)
-  return response.data
+  return response.data.reverse()
 })
 
 const notificationSlice = createSlice({
