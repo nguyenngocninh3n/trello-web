@@ -39,14 +39,14 @@ const BoardContent = ({ board }) => {
   const mouseSensor = useSensor(MouseSensor, {
     // Press delay of 250ms, with tolerance of 5px of movement
     activationConstraint: {
-      delay: 250,
-      tolerance: 5
+      delay: 120,
+      tolerance: 10
     }
   })
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
-      delay: 250,
-      tolerance: 5
+      delay: 120,
+      tolerance: 10
     }
   })
   const sensors = useSensors(mouseSensor, touchSensor)
