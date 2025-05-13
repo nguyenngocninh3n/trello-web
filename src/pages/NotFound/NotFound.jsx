@@ -68,7 +68,7 @@ function NotFound() {
           </Typography>
           &nbsp;
           <Typography variant="span" sx={{ color: '#fdba26', fontWeight: 500 }}>
-            TrungQuanDev
+            Trello Web
           </Typography>
           ?<br />
           Hmm, looks like that page doesn&apos;t exist.

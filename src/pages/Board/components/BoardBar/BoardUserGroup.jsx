@@ -20,7 +20,7 @@ function BoardUserGroup({ boardUsers = [], limit = 6 }) {
         if (index < limit) {
           return (
             <Tooltip title={user.displayName} key={index}>
-              <Avatar sx={{ width: 34, height: 34, cursor: 'pointer' }} alt="trungquandev" src={user.avatar} />
+              <Avatar sx={{ width: 34, height: 34, cursor: 'pointer' }} alt={user.displayName} src={user.avatar} />
             </Tooltip>
           )
         }
