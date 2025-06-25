@@ -163,15 +163,18 @@ const BoardContent = ({ board }) => {
 
     const nextOverColumn = nextColumns.find(column => column._id === overColumn._id)
     nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDragItemId)
+
+
     if (triggerFrom === 'handleDragEnd') {
-      const isHavingCards = !nextOverColumn?.cardOrderIds[0].includes('placeholder_card')
-      nextOverColumn.cards = isHavingCards ? nextOverColumn.cards : []
+      nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDragItemId && !card._id.includes('placeholder_card'))
+
     }
     nextOverColumn.cards.splice(newCardIndex, 0, activeDragItemData)
     nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
 
     setActiveTempColumn(nextOverColumn)
     if (triggerFrom === 'handleDragEnd') {
+      console.log('handleDragEnd: moveCardsInMultiColumnsAPI: ', nextActiveColumn, nextOverColumn)
       moveCardsInMultiColumnsAPI(cardId, cloneDeep(nextActiveColumn), cloneDeep(nextOverColumn))
 
       if (isEmpty(nextActiveColumn.cards)) {
