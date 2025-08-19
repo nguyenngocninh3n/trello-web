@@ -3,7 +3,7 @@
 Truy cập trang web tại đường link: https://trello-web-mauve-nine.vercel.app/
 
 ## Lưu ý
-- Khi đăng ký tài khoản, phải dùng email tồn tại (hệ thống sẽ gửi đường link xác thực tài khoản). Nếu không nhận được email xác thực. Bạn có thể đăng nhập website thông qua account:
+- Khi đăng ký tài khoản, phải dùng email tồn tại (hệ thống sẽ gửi đường link xác thực tài khoản). Nếu không nhận được email xác thực, bạn có thể đăng nhập website thông qua account:
 
              email: tdmuapp2@gmail.com
              password: tdmuapp2@gmail.com
