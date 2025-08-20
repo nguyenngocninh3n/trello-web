@@ -7,7 +7,7 @@ import { RecentMenu, StarredMenu, TemplateMenu, WorkspaceMenu } from './Menus'
 import SearchInput from './SearchInput'
 import ProfileSetting from './ProfileSetting'
 import ModeSelect from '@components/ModeSelect'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import Notifications from './Notifications'
 import AutoCompleteSearchBoard from './SearchBoards/AutoCompleteSearchBoard'
 const AppBar = () => {
@@ -17,6 +17,7 @@ const AppBar = () => {
       sx={{
         width: '100%',
         height: theme => theme.trello.appBarHeight,
+        padding: 1,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -48,6 +49,9 @@ const AppBar = () => {
           </Box>
           <Button sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }} variant="outlined">
             Create
+          </Button>
+          <Button color='success' LinkComponent={Link} to="/boards" sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }} variant="outlined">
+            Your Boards
           </Button>
         </Box>
       </Box>

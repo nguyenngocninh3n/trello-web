@@ -1,4 +1,4 @@
-import { Card as MuiCard } from '@mui/material'
+import { Card as MuiCard, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Zoom from '@mui/material/Zoom'
 import { useForm } from 'react-hook-form'
@@ -80,6 +80,10 @@ function LoginForm() {
           </Box>
           <FormSubmitBtn title={'Register'} />
           <FormBoxNavigating title="Already have an account?" path="/login" directText="Log in!" />
+          <Typography sx={{ margin: '2em 1em' }} bgcolor={'#F5F5F5'} variant="body2" color="text.secondary">
+            If you want test by new account, please register by real email. You will have to verify your email by the link sent
+            after registration.
+          </Typography>
         </MuiCard>
       </Zoom>
     </form>
