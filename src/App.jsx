@@ -8,9 +8,10 @@ import { useSelector } from 'react-redux'
 import { selectCurrentUser } from './redux/user/userSlice'
 import Settings from './pages/Settings/Settings'
 import Boards from './pages/Board'
+import IntroducePage from './pages/Introduce/Introduce'
 
-const ProtectedRoute = ({ user }) => {
-  if (!user) {
+const ProtectedRoute = ({ user, path }) => {
+  if (!user && path !== '/') {
     return <Navigate to={'/login'} replace />
   }
   return <Outlet />
@@ -29,9 +30,9 @@ function App() {
       <Route path="/login" element={<Auth />} />
       <Route path="/register" element={<Auth />} />
       <Route path="/verify" element={<AccountVerification />} />
+      <Route path="/" element={<IntroducePage />} />
 
       <Route element={<ProtectedRoute user={user} />}>
-        <Route path="/" element={<Boards />} />
         <Route path="/boards" element={<Boards />} />
         <Route path="/boards/:boardId" element={<BoardDetail />} />
         <Route path="/settings/account" element={<Settings />} />

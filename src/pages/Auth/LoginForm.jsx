@@ -1,4 +1,4 @@
-import { Card as MuiCard } from '@mui/material'
+import { Card as MuiCard, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Zoom from '@mui/material/Zoom'
 import { useForm } from 'react-hook-form'
@@ -19,12 +19,14 @@ import FormAlertVerifying from './components/FormAlertVerifying'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { loginUserAPI } from '~/redux/user/userSlice'
+import { useEffect } from 'react'
 function LoginForm() {
   const {
     handleSubmit,
     register,
     formState: { errors }
   } = useForm()
+
 
   let [searchParams] = useSearchParams()
   const dispatch = useDispatch()
@@ -72,6 +74,13 @@ function LoginForm() {
           </Box>
           <FormSubmitBtn title={'Login'} />
           <FormBoxNavigating title="New to Trello MERN Stack Advanced?" path="/register" directText="Create account!" />
+          <Typography sx={{margin: '2em 1em' }} bgcolor={'#F5F5F5'} variant="body2" color="text.secondary">
+            This is a demo account for testing purposes.
+            <br />
+            Email: tdmuapp2@gmail.com
+            <br />
+            Password: tdmuapp2@gmail.com
+          </Typography>
         </MuiCard>
       </Zoom>
     </form>

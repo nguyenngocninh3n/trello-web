@@ -5,16 +5,29 @@ import RegisterForm from './RegisterForm'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from '~/redux/user/userSlice'
 import bg from '@assets/auth/login-register-bg.jpg'
+import PageLoadingSpinner from '~/components/Loading/PageLoadingSpinner'
 function Auth() {
   const location = useLocation()
   const isLogin = location.pathname === '/login'
   const isRegister = location.pathname === '/register'
 
   const user = useSelector(selectCurrentUser)
+
+  const hasAccessWebsite = localStorage.getItem('access_website')
+  if (!hasAccessWebsite) {
+    setAccessWebsite
+  }
+
+  async function setAccessWebsite() {
+    localStorage.setItem('access_website', true)
+  }
+
   if (user) {
     return <Navigate to={'/'} replace={true} />
   }
-  return (
+  return !hasAccessWebsite ? (
+    <PageLoadingSpinner title="Loading..." />
+  ) : (
     <Box
       sx={{
         display: 'flex',
