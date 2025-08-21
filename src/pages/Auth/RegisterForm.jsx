@@ -81,7 +81,7 @@ function LoginForm() {
           <FormSubmitBtn title={'Register'} />
           <FormBoxNavigating title="Already have an account?" path="/login" directText="Log in!" />
           <Typography sx={{ margin: '2em 1em' }} bgcolor={'#F5F5F5'} variant="body2" color="text.secondary">
-            If you want test by new account, please register by real email. You will have to verify your email by the link sent
+            If you want to test by new account, please register by real email. You will have to verify your email by the link sent
             after registration.
           </Typography>
         </MuiCard>

@@ -19,7 +19,6 @@ import FormAlertVerifying from './components/FormAlertVerifying'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { loginUserAPI } from '~/redux/user/userSlice'
-import { useEffect } from 'react'
 function LoginForm() {
   const {
     handleSubmit,
@@ -74,7 +73,7 @@ function LoginForm() {
           </Box>
           <FormSubmitBtn title={'Login'} />
           <FormBoxNavigating title="New to Trello MERN Stack Advanced?" path="/register" directText="Create account!" />
-          <Typography sx={{margin: '2em 1em' }} bgcolor={'#F5F5F5'} variant="body2" color="text.secondary">
+          <Typography sx={{ margin: '2em 1em' }} bgcolor={'#F5F5F5'} variant="body2" color="text.secondary">
             This is a demo account for testing purposes.
             <br />
             Email: tdmuapp2@gmail.com

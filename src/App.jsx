@@ -30,7 +30,7 @@ function App() {
       <Route path="/login" element={<Auth />} />
       <Route path="/register" element={<Auth />} />
       <Route path="/verify" element={<AccountVerification />} />
-      <Route path="/" element={<IntroducePage />} />
+      <Route path="/" element={user ? <Boards /> :<IntroducePage />} />
 
       <Route element={<ProtectedRoute user={user} />}>
         <Route path="/boards" element={<Boards />} />
