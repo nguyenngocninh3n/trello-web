@@ -27,10 +27,10 @@ const BoardSideBar = ({ onSelect }) => {
           <ListAltIcon fontSize="small" />
           Templates
         </SidebarItem>
-        <SidebarItem className={selectTab === 'home' ? 'active' : ''} onClick={() => handleSelectTab('home')}>
+        {/* <SidebarItem className={selectTab === 'home' ? 'active' : ''} onClick={() => handleSelectTab('home')}>
           <HomeIcon fontSize="small" />
           Home
-        </SidebarItem>
+        </SidebarItem> */}
       </Stack>
       <Divider sx={{ my: 1 }} />
       <Stack direction="column" spacing={1}>

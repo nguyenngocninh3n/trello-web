@@ -4,6 +4,7 @@ import { cloneDeep } from 'lodash'
 import { useConfirm } from 'material-ui-confirm'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import { deleteColumnAPI, updateColumnAPI } from '~/api/column'
 import ToggleFocusInput from '~/components/ToggleFocusInput'
 import { deleteColumn, selectCurrentActiveBoard, updateCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
@@ -21,8 +22,8 @@ function ColumnHeader({ title, columnId }) {
     const result = await deleteConfirm({
       title: 'Delete this column?',
       description: 'This action will be delete selected Column belong with cards into!',
-      cancellationText: 'Huy',
-      confirmationText: 'Xac nhan'
+      cancellationText: 'Cancel',
+      confirmationText: 'Confirm'
     }).catch(error => {
       console.log('error when deleting column: ', error)
     })
@@ -41,6 +42,10 @@ function ColumnHeader({ title, columnId }) {
       editedColumn.title = value
       dispatch(updateCurrentActiveBoard(customBoards))
     })
+  }
+
+  const handleShowNothing = () => {
+    toast.info('This feature will be available soon!')
   }
 
   return (
@@ -77,25 +82,25 @@ function ColumnHeader({ title, columnId }) {
             'aria-labelledby': 'basic-button'
           }}
         >
-          <MenuItem>
+          {/* <MenuItem>
             <ListItemIcon>
               <AddCard fontSize="small" />
             </ListItemIcon>
             <ListItemText>Add new card</ListItemText>
-          </MenuItem>
-          <MenuItem>
+          </MenuItem> */}
+          <MenuItem onClick={handleShowNothing}>
             <ListItemIcon>
               <ContentCut fontSize="small" />
             </ListItemIcon>
             <ListItemText>Cut</ListItemText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleShowNothing}>
             <ListItemIcon>
               <ContentCopy fontSize="small" />
             </ListItemIcon>
             <ListItemText>Copy</ListItemText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleShowNothing}>
             <ListItemIcon>
               <ContentPaste fontSize="small" />
             </ListItemIcon>
@@ -108,7 +113,7 @@ function ColumnHeader({ title, columnId }) {
             </ListItemIcon>
             <ListItemText>Remove this column</ListItemText>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleShowNothing}>
             <ListItemIcon>
               <Cloud fontSize="small" />
             </ListItemIcon>

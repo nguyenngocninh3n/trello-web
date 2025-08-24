@@ -11,7 +11,8 @@ function PageLoadingSpinner({ title }) {
         justifyContent: 'center',
         gap: 2,
         width: '100vw',
-        height: '100vh'
+        height: '100vh',
+        zIndex:100
       }}
     >
       <CircularProgress />

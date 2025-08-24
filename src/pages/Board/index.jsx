@@ -20,8 +20,10 @@ function Boards() {
           <Grid item xs={12} sm={3}>
             <BoardSideBar onSelect={setSelected} />
           </Grid>
-          {selected === 'boards' && <BoardList />}
-          {selected === 'templates' && <BoardTemplateList />}
+          <Grid item xs={12} sm={9}>
+            {selected === 'boards' && <BoardList />}
+            {selected === 'templates' && <BoardTemplateList />}
+          </Grid>
         </Grid>
       </Box>
     </Container>

@@ -6,7 +6,12 @@ import FilterListIcon from '@mui/icons-material/FilterList'
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined'
 import BoardUserGroup from './BoardUserGroup'
 import InviteBoardUser from './InviteBoardUser'
+import { toast } from 'react-toastify'
 function BoardBar({ board }) {
+
+  const showToastNothing = () => {
+    toast.info('This feature will be available soon!')
+  }
   return (
     <Box
       sx={{
@@ -28,13 +33,13 @@ function BoardBar({ board }) {
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           <Chip sx={{ color: 'white' }} icon={<Typography color="white" />} label={board?.type} clickable />
         </Box>
-        <Box sx={{ display: 'flex', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', gap: 0.5 }} onClick={showToastNothing}>
           <Chip sx={{ color: 'white' }} icon={<AddToDriveIcon color="white" />} label=" Add To Google Drive" clickable />
         </Box>
-        <Box sx={{ display: 'flex', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', gap: 0.5 }} onClick={showToastNothing}>
           <Chip sx={{ color: 'white' }} icon={<BoltIcon color="white" />} label="Automation" clickable />
         </Box>
-        <Box sx={{ display: 'flex', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', gap: 0.5 }} onClick={showToastNothing}>
           <Chip sx={{ color: 'white' }} icon={<FilterListIcon color="white" />} label="Filters" clickable />
         </Box>
       </Box>

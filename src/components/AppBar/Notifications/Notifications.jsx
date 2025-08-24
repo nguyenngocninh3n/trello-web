@@ -24,6 +24,7 @@ import { isEmpty } from 'lodash'
 import { selectCurrentUser } from '~/redux/user/userSlice'
 import { updateInvitationStatusAPI } from '~/api'
 import { socketInstance } from '~/main'
+import { toast } from 'react-toastify'
 
 const BOARD_INVITATION_STATUS = {
   PENDING: 'pending',
@@ -39,7 +40,8 @@ function Notifications() {
   const open = Boolean(anchorEl)
   const handleClickNotificationIcon = event => {
     console.log(event.target)
-    setAnchorEl(event.currentTarget)
+    // setAnchorEl(event.currentTarget)
+    toast.info('This feature will be available soon!')
   }
 
   const handleClose = () => {

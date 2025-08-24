@@ -31,7 +31,7 @@ const BoardList = () => {
   }
 
   return (
-    <Grid display={'flex'} flexDirection={'column'} item xs={12} sm={9}>
+    <Box display={'flex'} flexDirection={'column'} sx={{ height: '100%' }} gap={2}>
       <Box flex={1} xs={12} sm={9}>
         <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
           Your boards:
@@ -50,8 +50,8 @@ const BoardList = () => {
           </Grid>
         )}
       </Box>
-      {totalBoards > 0 && <Pagination totalLength={totalBoards} currentPage={page} />}
-    </Grid>
+      {totalBoards > 0 && <Pagination sx={{ display: 'flex', justifyContent: 'right' }} totalLength={totalBoards} currentPage={page} />}
+    </Box>
   )
 }
 

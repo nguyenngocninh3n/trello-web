@@ -8,6 +8,7 @@ import ModeSelect from '@components/ModeSelect'
 import { Link, useNavigate } from 'react-router-dom'
 import Notifications from './Notifications'
 import AutoCompleteSearchBoard from './SearchBoards/AutoCompleteSearchBoard'
+import { toast } from 'react-toastify'
 const AppBar = () => {
   const navigate = useNavigate()
   return (
@@ -34,7 +35,7 @@ const AppBar = () => {
           <Typography color="white">Trello</Typography>
         </Box>
         <Box sx={{ display: 'flex' }}>
-          <Box sx={{ display: 'flex' }}>
+          {/* <Box sx={{ display: 'flex' }}>
             <WorkspaceMenu />
           </Box>
           <Box sx={{ display: 'flex' }}>
@@ -42,23 +43,49 @@ const AppBar = () => {
           </Box>
           <Box sx={{ display: 'flex' }}>
             <StarredMenu />
-          </Box>
-          <Box sx={{ display: 'flex' }}>
+          </Box> */}
+          {/* <Box sx={{ display: 'flex' }}>
             <TemplateMenu />
-          </Box>
-          <Button sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }} variant="outlined">
-            Create
-          </Button>
-          <Button color='success' LinkComponent={Link} to="/boards" sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }} variant="outlined">
+          </Box> */}
+          <Button
+            color="success"
+            LinkComponent={Link}
+            to="/boards"
+            sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }}
+            variant="outlined"
+          >
             Your Boards
           </Button>
+          <Button
+            color="success"
+            LinkComponent={Link}
+            to="/introduce"
+            sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }}
+            variant="outlined"
+          >
+            Home
+          </Button>
+  
+
+          {/* <Button
+            color="success"
+            LinkComponent={Link}
+            to="/boards"
+            sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }}
+            variant="outlined"
+          >
+            Templates
+          </Button>
+          <Button sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }} variant="outlined">
+            Create New Board
+          </Button> */}
         </Box>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }} gap={1}>
         {/* <SearchInput /> */}
         <AutoCompleteSearchBoard />
         <Notifications />
-        <Tooltip title="Helper" sx={{ cursor: 'pointer' }}>
+        <Tooltip title="Helper" sx={{ cursor: 'pointer' }} onClick={() => toast.info('This feature will be available soon!')}>
           <HelpOutlineOutlinedIcon fontSize="medium" />
         </Tooltip>
         <ModeSelect />
