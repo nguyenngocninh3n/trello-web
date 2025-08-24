@@ -1,10 +1,9 @@
 import { Box, Pagination as MuiPagination, PaginationItem } from '@mui/material'
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Pagination = ({ totalLength, currentPage }) => {
   return (
-    <Box sx={{ my: 3, pr: 5, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+    <Box sx={{ mt: 3, pr: 5, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
       <MuiPagination
         size="large"
         color="secondary"

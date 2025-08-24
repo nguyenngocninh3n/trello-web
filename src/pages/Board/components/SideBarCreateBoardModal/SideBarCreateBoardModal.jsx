@@ -45,7 +45,7 @@ function SidebarCreateBoardModal({ refreshBoards }) {
     toast.promise(createNewBoardAPI({ title, description, type }), { pending: 'Creating new board...' }).then(res => {
       if (!res.error) {
         toast.success('Create new board successfully...')
-        refreshBoards()
+        // refreshBoards()
         handleCloseModal()
       }
     })

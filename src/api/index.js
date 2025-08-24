@@ -11,6 +11,11 @@ export const getBoardsAPI = async (queryString) => {
   return response.data
 }
 
+export const getTemplatesAPI = async () => {
+  const response = await axiosInstance.get(`${SERVER_ADDRESS}/v1/templates`)
+  return response.data
+}
+
 export const createNewBoardAPI = async data => {
   const response = await axiosInstance.post(`${SERVER_ADDRESS}/v1/boards`, data)
   return response.data

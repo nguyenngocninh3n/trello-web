@@ -9,6 +9,7 @@ import AppBar from '~/components/AppBar'
 import { selectCurrentUser } from '~/redux/user/userSlice'
 import AppBarSection from './components/AppBarSection'
 import ValueSection from './components/ValueSection'
+import Footer from '~/components/Footer/Footer'
 
 export default function IntroducePage() {
   const user = useSelector(selectCurrentUser)
@@ -40,6 +41,7 @@ export default function IntroducePage() {
         <Box marginTop={20} />
         <ValueSection />
       </Box>
+      <Footer />
     </Box>
   )
 }

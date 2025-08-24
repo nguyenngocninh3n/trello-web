@@ -5,7 +5,6 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
-import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -70,7 +69,7 @@ function Notifications() {
       socketInstance.off('BE_INVITATION_BOARD_INVITE')
       socketInstance.off('BE_INVITATION_BOARD_UPDATE')
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <Box>

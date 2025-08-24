@@ -21,12 +21,13 @@ const AppBar = () => {
         justifyContent: 'space-between',
         bgcolor: theme => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0'),
         overflowX: 'auto',
-        overflowY: 'hidden'
+        overflowY: 'hidden',
+        boxSizing: 'border-box'
       }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }} gap={2}>
         <AppsIcon onClick={() => navigate('/')} sx={{ color: 'white', cursor: 'pointer' }} />
-        <Box onClick={() => navigate('/')} sx={{ display: 'flex', cursor: 'pointer' }} gap={1}>
+        <Box onClick={() => navigate('/introduce')} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} gap={1}>
           <SvgIcon sx={{ color: 'white' }}>
             <TrelloLogo />
           </SvgIcon>
@@ -55,9 +56,9 @@ const AppBar = () => {
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }} gap={1}>
         {/* <SearchInput /> */}
-        <AutoCompleteSearchBoard  />
+        <AutoCompleteSearchBoard />
         <Notifications />
-        <Tooltip title="Helper">
+        <Tooltip title="Helper" sx={{ cursor: 'pointer' }}>
           <HelpOutlineOutlinedIcon fontSize="medium" />
         </Tooltip>
         <ModeSelect />

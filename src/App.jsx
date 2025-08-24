@@ -33,6 +33,7 @@ function App() {
       <Route path="/" element={user ? <Boards /> :<IntroducePage />} />
 
       <Route element={<ProtectedRoute user={user} />}>
+        <Route path="/introduce" element={<IntroducePage />} />
         <Route path="/boards" element={<Boards />} />
         <Route path="/boards/:boardId" element={<BoardDetail />} />
         <Route path="/settings/account" element={<Settings />} />
