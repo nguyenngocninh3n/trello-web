@@ -10,8 +10,8 @@ const BoardTemplateDetail = ({ board, onBack }) => {
   const [createDialogOpen, setCreateDialogOpen] = useState(false)
 
   return (
-    <Box sx={{ bgcolor: '#f8f9fa', minHeight: '100vh' }}>
-      <Container maxWidth="lg" sx={{ py: 3 }}>
+    <Box sx={{ bgcolor: '#F8F9D0', width: '100%' }}>
+      <Container sx={{ py: 3 }}>
         {/* Header Navigation */}
         <Box sx={{ mb: 3 }}>
           <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>

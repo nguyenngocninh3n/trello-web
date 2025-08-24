@@ -121,8 +121,7 @@ const TemplateDetailBodyPreview = ({ board }) => {
                       // overflowY: 'auto',
                       gap: 1,
                       maxHeight: theme =>
-                        `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)} - ${theme.trello.columnHeaderHeight} - ${
-                          theme.trello.columnFooterHeight
+                        `calc(${theme.trello.boardContentHeight} 
                         })`,
                       '&::-webkit-scrollbar-thumb': {
                         backgroundColor: '#6176deff',

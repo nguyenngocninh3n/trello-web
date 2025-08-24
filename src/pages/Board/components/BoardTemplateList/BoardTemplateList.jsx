@@ -25,7 +25,7 @@ const BoardTemplateList = () => {
   }
 
   return (
-    <Grid display={'flex'} flexDirection={'column'} item xs={12} sm={9}>
+    <Box  display={'flex'} flexDirection={'column'} item xs={12} sm={9}>
       {!selectedTemplate && (
         <Box flex={1} xs={12} sm={9}>
           <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
@@ -49,7 +49,7 @@ const BoardTemplateList = () => {
       {selectedTemplate && (
         <BoardTemplateDetail board={boards.find(b => b._id === selectedTemplate)} onBack={() => setSelectedTemplate(null)} />
       )}
-    </Grid>
+    </Box>
   )
 }
 
