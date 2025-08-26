@@ -2,7 +2,7 @@ import TrelloLogo from '@assets/images/trello_logo.svg'
 import AppsIcon from '@mui/icons-material/Apps'
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined'
 import { Box, Button, SvgIcon, Tooltip, Typography } from '@mui/material'
-import { RecentMenu, StarredMenu, TemplateMenu, WorkspaceMenu } from './Menus'
+import { AboutMenu, RecentMenu, StarredMenu, TemplateMenu, WorkspaceMenu } from './Menus'
 import ProfileSetting from './ProfileSetting'
 import ModeSelect from '@components/ModeSelect'
 import { Link, useNavigate } from 'react-router-dom'
@@ -66,19 +66,11 @@ const AppBar = () => {
             Home
           </Button>
   
-
-          {/* <Button
-            color="success"
-            LinkComponent={Link}
-            to="/boards"
-            sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }}
-            variant="outlined"
-          >
-            Templates
-          </Button>
-          <Button sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }} variant="outlined">
+            <AboutMenu />
+          {/* <Button sx={{ color: 'white', border: 'none', '&:hover': { border: 'none' } }} variant="outlined">
             Create New Board
-          </Button> */}
+          </Button>
+          <RecentMenu /> */}
         </Box>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }} gap={1}>

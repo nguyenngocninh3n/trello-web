@@ -9,6 +9,8 @@ import { selectCurrentUser } from './redux/user/userSlice'
 import Settings from './pages/Settings/Settings'
 import Boards from './pages/Board'
 import IntroducePage from './pages/Introduce/Introduce'
+import AboutPage from './pages/Introduce/About'
+import Founder from './pages/Introduce/Founder'
 
 const ProtectedRoute = ({ user, path }) => {
   if (!user && path !== '/') {
@@ -30,7 +32,9 @@ function App() {
       <Route path="/login" element={<Auth />} />
       <Route path="/register" element={<Auth />} />
       <Route path="/verify" element={<AccountVerification />} />
-      <Route path="/" element={user ? <Boards /> :<IntroducePage />} />
+      <Route path="/about/founder" element={<Founder />} />
+      <Route path="/about/introduce" element={<IntroducePage />} />
+      <Route path="/" element={user ? <Boards /> : <IntroducePage />} />
 
       <Route element={<ProtectedRoute user={user} />}>
         <Route path="/introduce" element={<IntroducePage />} />

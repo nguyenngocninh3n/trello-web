@@ -42,6 +42,7 @@ function ProfileSetting() {
       .catch(() => {})
   }
 
+  console.log('user in profile setting avatar: ', user.avatar)
   return (
     <React.Fragment>
       <Tooltip title="Account settings">

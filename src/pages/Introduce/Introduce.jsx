@@ -13,7 +13,6 @@ import Footer from '~/components/Footer/Footer'
 
 export default function IntroducePage() {
   const user = useSelector(selectCurrentUser)
-
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       {user ? <AppBar /> : <AppBarSection />}

@@ -1,19 +1,8 @@
-import * as React from 'react'
-import AppBar from '@mui/material/AppBar'
+import { Button } from '@mui/material'
 import Box from '@mui/material/Box'
-import CssBaseline from '@mui/material/CssBaseline'
-import Divider from '@mui/material/Divider'
-import Drawer from '@mui/material/Drawer'
-import IconButton from '@mui/material/IconButton'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import MenuIcon from '@mui/icons-material/Menu'
-import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
+
 const drawerWidth = 240
 const navItems = [
   {
@@ -33,68 +22,36 @@ const navItems = [
   }
 ]
 const AppBarSection = () => {
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(prevState => !prevState)
-  }
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map(item => (
-          <ListItem key={item._id} disablePadding>
-            <ListItemButton component={Link} to={item.path} sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item.name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  )
-
-  const container = window !== undefined ? () => window.document.body : undefined
-
   return (
-    <Box display="flex" flexDirection="column" >
-      <CssBaseline />
-      <AppBar component="nav" color="default">
-        <Toolbar>
-          <IconButton aria-label="open drawer" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { sm: 'none' } }}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-            Trello Clone
-          </Typography>
-
-          {navItems.map(item => (
-            <Button LinkComponent={Link} to={item.path} key={item._id} sx={{ color: '#000' }}>
-              {item.name}
-            </Button>
-          ))}
-        </Toolbar>
-      </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        height: theme => theme.trello?.appBarHeight,
+        boxSizing: 'border-box',
+        py: 1,
+        px: 2,
+        bgcolor: theme => (theme.palette.mode === 'dark' ? '#2c3e50' : 'whitesmoke'),
+        color: theme => theme.palette.text.primary,
+        borderBottom: '1px solid',
+        borderColor: 'divider',
+        textDecoration: 'none'
+      }}
+    >
+      <Box flex={1} display={'flex'} flexDirection={'row'} columnGap={2}>
+        <Button variant="h6">Trello</Button>
+      </Box>
+      <Box display={'flex'} flexDirection={'row'} columnGap={2}>
+        <Button sx={{ textDecoration: 'none', '&:hover': { color:'primary.main' } }} component={Link} to={'/login'} color="inherit" variant="h6">
+          Login
+        </Button>
+        <Button sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }} component={Link} to={'/register'} color="inherit" variant="h6">
+          Register
+        </Button>
+      </Box>
     </Box>
   )
 }
