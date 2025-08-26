@@ -7,7 +7,7 @@ import { useState } from 'react'
 import SidebarCreateBoardModal from '../SideBarCreateBoardModal'
 import SidebarItem from '../SideBarItem'
 
-const BoardSideBar = ({ onSelect }) => {
+const BoardSideBar = ({ onSelect, setRefreshing }) => {
   const [selectTab, setSelectTab] = useState('boards')
   const handleSelectTab = tab => {
     setSelectTab(tab)
@@ -34,7 +34,7 @@ const BoardSideBar = ({ onSelect }) => {
       </Stack>
       <Divider sx={{ my: 1 }} />
       <Stack direction="column" spacing={1}>
-        <SidebarCreateBoardModal />
+        <SidebarCreateBoardModal onRefreshBoards={setRefreshing} />
       </Stack>
     </>
   )

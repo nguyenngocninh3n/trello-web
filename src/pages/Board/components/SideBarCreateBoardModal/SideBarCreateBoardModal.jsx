@@ -24,7 +24,7 @@ const BOARD_TYPES = {
   PRIVATE: 'private'
 }
 
-function SidebarCreateBoardModal({ refreshBoards }) {
+function SidebarCreateBoardModal({ onRefreshBoards }) {
   const {
     control,
     register,
@@ -46,6 +46,7 @@ function SidebarCreateBoardModal({ refreshBoards }) {
       if (!res.error) {
         toast.success('Create new board successfully...')
         // refreshBoards()
+        onRefreshBoards(pre => !pre) // toggle boolean
         handleCloseModal()
       }
     })

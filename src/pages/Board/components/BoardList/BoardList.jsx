@@ -1,30 +1,11 @@
 import { Box, Grid, Pagination, Typography } from '@mui/material'
 import { isEmpty } from 'lodash'
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { getBoardsAPI } from '~/api'
+
 import PageLoadingSpinner from '~/components/Loading/PageLoadingSpinner'
 import BoardCard from '../BoardCard'
 
-const BoardList = () => {
-  const [boards, setBoards] = useState(null)
-  const [totalBoards, setTotalBoards] = useState(null)
+const BoardList = ({ boards, totalBoards, page }) => {
 
-  const location = useLocation()
-  const query = new URLSearchParams(location.search)
-  const page = parseInt(query.get('page') || '1', 10)
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => callGetBoardsAPI(), [page, location])
-
-  const callGetBoardsAPI = () => {
-    const queyString = `?page=${page}`
-    getBoardsAPI(queyString).then(data => {
-      if (isEmpty(data)) return
-      setBoards(data.boards)
-      setTotalBoards(data.totalBoards)
-    })
-  }
 
   if (!boards) {
     return <PageLoadingSpinner caption={'Loading Boards...'} />
@@ -50,7 +31,9 @@ const BoardList = () => {
           </Grid>
         )}
       </Box>
-      {totalBoards > 0 && <Pagination sx={{ display: 'flex', justifyContent: 'right' }} totalLength={totalBoards} currentPage={page} />}
+      {totalBoards > 0 && (
+        <Pagination sx={{ display: 'flex', justifyContent: 'right' }} totalLength={totalBoards} currentPage={page} />
+      )}
     </Box>
   )
 }
